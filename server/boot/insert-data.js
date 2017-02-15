@@ -9,7 +9,8 @@ var fs = require('fs');
 //         }
 //     };
 // }
-
+var root =  "/home/ubuntu/workspace/project-bk";
+            //"/var/www/html/project-bk";
 
 function createUser(AppUsers, cb) {
     AppUsers.find({
@@ -42,15 +43,15 @@ function copyImages(params, cb) {
     }
     */
     
-    var root = "/home/ubuntu/workspace/initial-data";
+    // var root = "/home/ubuntu/workspace/initial-data";
     
-    var target = "/home/ubuntu/workspace/project-bk/server/storage/image-container";
-    var questionIds = fs.readdirSync(root + "/images");
+    var target = root + "/server/storage/image-container";
+    var questionIds = fs.readdirSync(root + "/initial-data/images");
     questionIds.forEach(function(imgCase, index, tempQuestionIds) {
         var tempArr = [];
-        fs.readdirSync(root + "/images/" + imgCase).forEach(function(img, imageIndex, tempImageIds) {
+        fs.readdirSync(root + "/initial-data/images/" + imgCase).forEach(function(img, imageIndex, tempImageIds) {
             if(img.match(/.jpg|.jpeg/)) {
-                fs.readFile(root + "/images/" + imgCase + "/" + img, function(err, res) {
+                fs.readFile(root + "/initial-data/images/" + imgCase + "/" + img, function(err, res) {
                     if(err) throw err;
                     fs.writeFile(target + "/" + params.userId + " " + img, res, function(error, response) {
                         if(error) throw error;
@@ -59,7 +60,7 @@ function copyImages(params, cb) {
                 createImageRecord({
                     model: params.model,
                     imgName: params.userId + " " + img, 
-                    jsonPath: root + "/json/" + imgCase + "/" + img.split(".")[0] + ".json",
+                    jsonPath: root + "/initial-data/json/" + imgCase + "/" + img.split(".")[0] + ".json",
                     userId: params.userId,
                     testId: params.testId
                 });
@@ -174,8 +175,8 @@ module.exports = function(app) {
     UserAnswers.remove();
     
     console.log("Removing all records from Images and ImageContainer model");
-    fs.readdirSync('/home/ubuntu/workspace/project-bk/server/storage/image-container').forEach(function(path) {
-        fs.unlinkSync('/home/ubuntu/workspace/project-bk/server/storage/image-container' + "/" + path);
+    fs.readdirSync(root + '/server/storage/image-container').forEach(function(path) {
+        fs.unlinkSync(root + '/server/storage/image-container' + "/" + path);
     });
     Images.remove();
     Tests.remove();
@@ -190,12 +191,11 @@ module.exports = function(app) {
     });
     setTimeout(function() {
         var file;
-        var root = "/home/ubuntu/workspace/image-data";
-        fs.readdirSync(root).forEach(function(dir, index) {
-            fs.readdirSync(root + "/" + dir).forEach(function(dir2, index2) {
+        fs.readdirSync(root + "/image-data").forEach(function(dir, index) {
+            fs.readdirSync(root + "/image-data/" + dir).forEach(function(dir2, index2) {
                 
                 if(dir2.match(/.json/)) {
-                    file = require(root + "/" + dir + "/" + dir2);
+                    file = require(root + "/image-data/" + dir + "/" + dir2);
                     file.data.forEach(function(res) {
                         if(res.Heart_Type) {
                             Questions.findOne({
