@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AppUsers": {
+    "dataSource": "mlab",
+    "public": true
+  },
+  "Images": {
+    "dataSource": "mlab",
+    "public": true
+  },
+  "TestTaken": {
+    "dataSource": "mlab",
+    "public": true
+  },
+  "UserAnswers": {
+    "dataSource": "mlab",
+    "public": true
+  },
+  "Questions": {
+    "dataSource": "mlab",
+    "public": true
+  },
+  "Tests": {
+    "dataSource": "mlab",
+    "public": true
+  },
+  "ImageContainer": {
+    "dataSource": "photostorage",
+    "public": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mlab": {
+    "host": "ds139619.mlab.com:39619/temptest-dev",
+    "port": 39619,
+    "url": "mongodb://ssfuser:AAAaaa1!@ds139619.mlab.com:39619/temptest-dev",
+    "database": "mongo",
+    "password": "AAAaaa1!",
+    "name": "mlab",
+    "user": "ssfuser",
+    "connector": "mongodb"
+  },
+  "photostorage": {
+    "name": "photostorage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "/home/ubuntu/workspace/project-bk/server/storage/"
+  }
+}

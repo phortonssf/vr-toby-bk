@@ -1,0 +1,38 @@
+{
+  "name": "Images",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "wScore": {
+      "type": "array"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "questionIds": {
+      "type": "hasMany",
+      "model": "Questions",
+      "foreignKey": "imageIds"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

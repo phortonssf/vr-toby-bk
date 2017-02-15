@@ -1,0 +1,50 @@
+{
+  "name": "Tests",
+  "plural": "Tests",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "version": {
+      "type": "number",
+      "required": true
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "style": {
+      "type": "string",
+      "required": true
+    },
+    "purpose": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "questionIds": {
+      "type": "hasMany",
+      "model": "Questions",
+      "foreignKey": "testId"
+    },
+    "testTakenIds": {
+      "type": "hasMany",
+      "model": "TestsTaken",
+      "foreignKey": "testId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

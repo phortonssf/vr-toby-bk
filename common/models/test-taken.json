@@ -1,0 +1,41 @@
+{
+  "name": "TestTaken",
+  "plural": "TestTaken",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "testId": {
+      "type": "string",
+      "required": true
+    },
+    "createDate": {
+      "type": "date",
+      "required": true
+    },
+    "totalCorrect": {
+      "type": "number",
+      "required": true
+    },
+    "totalCount": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "userAnswerIds": {
+      "type": "hasMany",
+      "model": "UserAnswers",
+      "foreignKey": "testTakenId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
