@@ -1,14 +1,4 @@
 var fs = require('fs');
-
-// function customPromise(count, timer, cb){
-//     var tempArr = [];
-//     return function(arrElem) {
-//         if(arrElem) {
-//             tempArr.push(arrElem);
-//             if(count == tempArr.length) cb(0, tempArr);
-//         }
-//     };
-// }
 var root =  "/home/ubuntu/workspace/project-bk";
             //"/var/www/html/project-bk";
 
@@ -69,6 +59,7 @@ function copyImages(params, cb) {
         });
         //create questions
         createQuestions({
+            caseId: imgCase,
             testId: params.testId,
             model: params.model.app.models.Questions,
             imageIds: tempArr
@@ -145,6 +136,7 @@ function createTest(params) {
 function createQuestions(params) {
     /*
     {
+        caseId: imgCase,
         testId: testId,
         model: Questions,
         imageIds: imageIds
@@ -152,7 +144,7 @@ function createQuestions(params) {
     */
     params.model.findOrCreate({
         imageIds: params.imageIds,
-        answer: "Normal",
+        answer: require(root + '/initial-data/_definitions.json')[params.caseId] == "normal" ? "Normal" : "Enlarged",
         testId: params.testId,
         tags: ""
         // "wScore": [
@@ -169,18 +161,18 @@ module.exports = function(app) {
     var Questions = app.models.Questions;
     
     var TestTaken = app.models.TestTaken;
-    TestTaken.remove();
+    // TestTaken.remove();
     
     var UserAnswers = app.models.UserAnswers;
-    UserAnswers.remove();
+    // UserAnswers.remove();
     
     console.log("Removing all records from Images and ImageContainer model");
     fs.readdirSync(root + '/server/storage/image-container').forEach(function(path) {
         fs.unlinkSync(root + '/server/storage/image-container' + "/" + path);
     });
-    Images.remove();
-    Tests.remove();
-    Questions.remove();
+    // Images.remove();
+    // Tests.remove();
+    // Questions.remove();
     
     createUser(AppUsers, function(err, userId) {
         if(err) throw err;
@@ -189,40 +181,4 @@ module.exports = function(app) {
             userId: userId
         });
     });
-    setTimeout(function() {
-        var file;
-        fs.readdirSync(root + "/image-data").forEach(function(dir, index) {
-            fs.readdirSync(root + "/image-data/" + dir).forEach(function(dir2, index2) {
-                
-                if(dir2.match(/.json/)) {
-                    file = require(root + "/image-data/" + dir + "/" + dir2);
-                    file.data.forEach(function(res) {
-                        if(res.Heart_Type) {
-                            Questions.findOne({
-                                where: {
-                                    imageIds: {
-                                        regexp: "/" + res.Image.split("_")[0] + "/" //   /*103585*/
-                                    }
-                                }
-                            }, function(err, resp) {
-                                if(err) throw err;
-                                // console.log("Hit");
-                                if(resp) {
-                                    resp.__data.answer = res.Heart_Type;
-                                    Questions.upsert(resp.__data, function(err2, res2) {
-                                        if(err2) throw err2;
-                                        // console.log(res2);
-                                    });
-                                }
-                            });
-                            
-                            
-                        }
-                        // console.log(true + " " + res.Heart_Type);
-                    });
-                }
-            
-            });
-        });
-    }, 5000);
 };

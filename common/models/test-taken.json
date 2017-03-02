@@ -20,8 +20,7 @@
       "required": true
     },
     "totalCorrect": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "totalCount": {
       "type": "number",

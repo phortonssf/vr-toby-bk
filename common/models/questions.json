@@ -24,7 +24,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "userAnswerIds": {
+      "type": "hasMany",
+      "model": "UserAnswers",
+      "foreignKey": "questionId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
