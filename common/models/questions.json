@@ -17,10 +17,8 @@
     "tags": {
       "type": "string"
     },
-    "wScore": {
-      "type": [
-        "number"
-      ]
+    "imageIds": {
+      "type": "string"
     }
   },
   "validations": [],

@@ -11,10 +11,6 @@
       "type": "string",
       "required": true
     },
-    "testId": {
-      "type": "string",
-      "required": true
-    },
     "createDate": {
       "type": "date",
       "required": true
