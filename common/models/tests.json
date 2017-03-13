@@ -28,7 +28,7 @@
       "required": true
     },
     "tags": {
-      "type": "string",
+      "type": "string"
     },
     "answerChoices": {
       "type": [
