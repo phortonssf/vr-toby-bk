@@ -4,13 +4,13 @@
     "connector": "memory"
   },
   "mlab": {
-    "host": "ds139619.mlab.com:39619/temptest-dev",
+    "host": "ds131340.mlab.com:31340/vrtoby-softbrew-dev",
     "port": 39619,
-    "url": "mongodb://ssfuser:AAAaaa1!@ds139619.mlab.com:39619/temptest-dev",
+    "url": "mongodb://sbuser:AAAaaa1!@ds131340.mlab.com:31340/vrtoby-softbrew-dev",
     "database": "mongo",
     "password": "AAAaaa1!",
     "name": "mlab",
-    "user": "ssfuser",
+    "user": "sbuser",
     "connector": "mongodb"
   },
   "photostorage": {
