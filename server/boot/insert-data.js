@@ -10,13 +10,15 @@ var models = [
 ];
 var targetModel, targetRequire;
 // Creates an array of 10 ObjectIds for use in creating the test data
-/*
+// /*
 var tempOutput = [];
-for (var i = 0; i < 10; i++) {
+for (var i = 0; i < 30; i++) {
     tempOutput.push(new ObjectId());
 }
-console.log(tempOutput);
+console.log(JSON.stringify(tempOutput));
 // */
+
+/*
 module.exports = function(app) {
     mongoConnect(url, function(err, db) {
         for (var model of models) {
@@ -36,7 +38,7 @@ module.exports = function(app) {
 };
 //remove when moving to prod
 module.exports();
-
+// */
 
 function mongoConnect(dbUrl, next) {
     MongoClient.connect(dbUrl, function(err, db) {
